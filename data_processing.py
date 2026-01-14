@@ -6,6 +6,18 @@ import numpy as np
 from typing import Tuple, Optional
 
 
+# Risk probability weights for synthetic data generation
+AGE_WEIGHT = 0.15
+MEDICATION_WEIGHT = 0.15
+HOSPITAL_STAY_WEIGHT = 0.1
+PREVIOUS_VISITS_WEIGHT = 0.2
+DIABETES_WEIGHT = 0.1
+HYPERTENSION_WEIGHT = 0.1
+HEART_DISEASE_WEIGHT = 0.1
+EMERGENCY_ADMISSION_WEIGHT = 0.1
+RANDOM_VARIATION = 0.2
+
+
 def generate_sample_data(n_samples: int = 1000) -> pd.DataFrame:
     """
     Generate synthetic clinical data for readmission risk analysis.
@@ -38,15 +50,15 @@ def generate_sample_data(n_samples: int = 1000) -> pd.DataFrame:
     
     # Generate readmission target based on features with some logic
     readmission_prob = (
-        (df['age'] > 65) * 0.15 +
-        (df['num_medications'] > 10) * 0.15 +
-        (df['time_in_hospital'] > 7) * 0.1 +
-        (df['previous_visits'] > 3) * 0.2 +
-        (df['diabetes'] == 1) * 0.1 +
-        (df['hypertension'] == 1) * 0.1 +
-        (df['heart_disease'] == 1) * 0.1 +
-        (df['admission_type'] == 'Emergency') * 0.1 +
-        np.random.random(n_samples) * 0.2
+        (df['age'] > 65) * AGE_WEIGHT +
+        (df['num_medications'] > 10) * MEDICATION_WEIGHT +
+        (df['time_in_hospital'] > 7) * HOSPITAL_STAY_WEIGHT +
+        (df['previous_visits'] > 3) * PREVIOUS_VISITS_WEIGHT +
+        (df['diabetes'] == 1) * DIABETES_WEIGHT +
+        (df['hypertension'] == 1) * HYPERTENSION_WEIGHT +
+        (df['heart_disease'] == 1) * HEART_DISEASE_WEIGHT +
+        (df['admission_type'] == 'Emergency') * EMERGENCY_ADMISSION_WEIGHT +
+        np.random.random(n_samples) * RANDOM_VARIATION
     )
     
     df['readmitted'] = (readmission_prob > 0.5).astype(int)

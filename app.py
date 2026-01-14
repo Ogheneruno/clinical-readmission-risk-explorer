@@ -29,24 +29,6 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS
-st.markdown("""
-    <style>
-    .main-header {
-        font-size: 2.5rem;
-        color: #1f77b4;
-        text-align: center;
-        margin-bottom: 2rem;
-    }
-    .metric-card {
-        background-color: #f0f2f6;
-        padding: 1rem;
-        border-radius: 0.5rem;
-        margin: 0.5rem 0;
-    }
-    </style>
-""", unsafe_allow_html=True)
-
 
 @st.cache_data
 def load_data(n_samples=1000):
@@ -67,8 +49,7 @@ def main():
     """Main application function."""
     
     # Header
-    st.markdown('<h1 class="main-header">🏥 Clinical Readmission Risk Explorer</h1>', 
-                unsafe_allow_html=True)
+    st.title("🏥 Clinical Readmission Risk Explorer")
     
     st.markdown("""
     This tool uses machine learning to predict the risk of patient readmission to hospitals.
