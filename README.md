@@ -38,12 +38,27 @@ pip install -r requirements.txt
 
 ## Usage
 
+### Running the Web Application
+
 Run the Streamlit application:
 ```bash
 streamlit run app.py
 ```
 
 The application will open in your default web browser at `http://localhost:8501`.
+
+### Running the Example Script
+
+To see a command-line demonstration of the core functionality:
+```bash
+python example.py
+```
+
+This will demonstrate:
+- Synthetic data generation
+- Model training and evaluation
+- Feature importance analysis
+- Risk prediction for sample patients
 
 ## Application Pages
 
@@ -115,6 +130,7 @@ clinical-readmission-risk-explorer/
 ├── app.py                  # Main Streamlit application
 ├── model.py                # Machine learning model implementation
 ├── data_processing.py      # Data processing utilities
+├── example.py              # Example script demonstrating functionality
 ├── requirements.txt        # Python dependencies
 ├── .gitignore             # Git ignore file
 └── README.md              # This file
